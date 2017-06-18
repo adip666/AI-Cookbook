@@ -2,43 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrive : AgentBehaviour {
+public class Leave : AgentBehaviour {
 
-    public float targetRadius;
-    public float slowRadius;
-    public float timeToTarget = .1f;
+    public float escapeRadius;
+    public float dangerRadius;
+    public float timeToTarget = 0.1f;
 
     public override Steering GetSteering()
     {
         Steering steering = new Steering();
-        Vector3 direction = target.transform.position - transform.position;
+        Vector3 direction = transform.position - target.transform.position;
         float distance = direction.magnitude;
-        float targetSpeed;
-        if (distance < targetRadius)
+        if (distance > dangerRadius)
         {
             return steering;
         }
-        if(distance > slowRadius)
+        float reduce;
+        if (distance < escapeRadius)
         {
-            targetSpeed = agent.maxSpeed;
+            reduce = 0;
         }
         else
         {
-            targetSpeed = agent.maxSpeed * distance / slowRadius;
+            reduce = distance / dangerRadius * agent.maxSpeed;
         }
+        float targetSpeed = agent.maxSpeed - reduce;
 
         Vector3 desiredVelocity = direction;
         desiredVelocity.Normalize();
         desiredVelocity *= targetSpeed;
         steering.linear = desiredVelocity - agent.velocity;
         steering.linear /= timeToTarget;
-        if(steering.linear.magnitude > agent.maxAccel)
+        if (steering.linear.magnitude > agent.maxAccel)
         {
             steering.linear.Normalize();
             steering.linear *= agent.maxAccel;
         }
         return steering;
-
-
     }
 }
