@@ -77,8 +77,10 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\Agent.cs" />
     <Compile Include="Assets\scripts\AgentBehaviour.cs" />
+    <Compile Include="Assets\scripts\Align.cs" />
     <Compile Include="Assets\scripts\Arrive.cs" />
     <Compile Include="Assets\scripts\Evade.cs" />
+    <Compile Include="Assets\scripts\Face.cs" />
     <Compile Include="Assets\scripts\Flee.cs" />
     <Compile Include="Assets\scripts\Leave.cs" />
     <Compile Include="Assets\scripts\Pursue.cs" />

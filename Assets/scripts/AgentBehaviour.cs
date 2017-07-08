@@ -7,6 +7,10 @@ public class AgentBehaviour : MonoBehaviour {
     public GameObject target;
     protected Agent agent;
 
+    //public float maxSpeed, maxAccel, maxRotation, MaxAngularAccel;
+
+
+
     public virtual void Awake()
     {
         agent = gameObject.GetComponent<Agent>();
@@ -19,5 +23,22 @@ public class AgentBehaviour : MonoBehaviour {
     {
         return new Steering();
     }
+    public float MapToRange(float rotation)
+    {
+        rotation %= 360f;
 
+        if (Mathf.Abs(rotation) > 180)
+        {
+            if (rotation < 0f)
+            {
+                rotation += 360;
+
+            }else
+            {
+                rotation -= 360f;
+            }
+        }
+        return rotation;
+
+    }
 }

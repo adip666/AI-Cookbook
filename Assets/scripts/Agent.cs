@@ -11,10 +11,10 @@ public class Agent : MonoBehaviour {
     public Vector3 velocity;
     protected Steering steering;
 
+    public float maxRotation, MaxAngularAccel;
 
 
-
-	void Start () {
+    void Start () {
         velocity = Vector3.zero;
         steering = new Steering();
 	}
