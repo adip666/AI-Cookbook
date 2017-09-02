@@ -48,7 +48,11 @@ public class Agent : MonoBehaviour {
             velocity.Normalize();
             velocity = velocity * maxSpeed;
         }
-        if(steering.angular == 0f)
+        if (rotation > maxRotation) // dopisałem to bo było w drugim projekcie
+        {
+            rotation = maxRotation;
+        }
+        if (steering.angular == 0f)
         {
             rotation = 0f;
         }
